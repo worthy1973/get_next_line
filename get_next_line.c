@@ -5,41 +5,79 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dlopez-i <dlopez-i@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 12:35:37 by dlopez-i          #+#    #+#             */
-/*   Updated: 2023/03/07 12:39:04 by dlopez-i         ###   ########.fr       */
+/*   Created: 2023/04/19 12:52:01 by dlopez-i          #+#    #+#             */
+/*   Updated: 2023/05/17 16:43:05 by dlopez-i         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-
-int		get_next_line(int fd, char **line)
+void	*ft_read(int fd,char *buf, int bytes)
 {
-    static char	*str[4096];
-    char		*buf;
-    int			bytes;
+	char	*tmp;
 
-    if (fd < 0 || !line || BUFFER_SIZE <= 0)
-        return (-1);
-    if (!(buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-        return (-1);
-    while ((bytes = read(fd, buf, BUFFER_SIZE)) > 0)
-    {
-        buf[bytes] = '\0';
-        if (!str[fd])
-            str[fd] = ft_strdup(buf);
-        else
-            str[fd] = ft_strjoin(str[fd], buf);
-        if (ft_strchr(buf, '\n'))
-            break ;
-    }
-    free(buf);
-    if (bytes < 0)
-        return (-1);
-    else if (bytes == 0 && (!str[fd] || str[fd][0] == '\0'))
-    {
-        *line = ft_strdup("");
-        return (0);
-    }
-    return (get_line(&str[fd], line));
+	tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!tmp)
+		return (ft_free(&buf,&tmp);
+	while (bytes > 0)
+	{
+		bytes = read(fd,tmp, BUFFER_SIZE);
+		if (bytes < 0)
+	   		return (ft_free (&buf, &tmp);
+		tmp[bytes] = '\0';
+		buf = ft_protect_join(buf,tmp);
+		if (!buf)
+		 	return (NULL);
+		if (ft_strchr(tmp, '\n'))
+			break;
+
+	}	
+	ft_free (&tmp, NULL); 
+	return (buf);
 }
+void	*ft_protect_join(char *s1, char *s2)
+{
+	char	*tmp;
+
+	if (!s1)
+		return (ft_strdup(s2));
+	tmp = ft_strjoin(s1, s2);
+	if (!tmp)
+		return (NULL);
+	ft_free(&s1, NULL);
+	return (tmp);
+}
+void 	*ft_free(char **s1, char **s2) // REVISAR ESTA FUNCION
+{
+	if (s1)
+	{
+		free(*s1);
+		*s1 = NULL;
+	}
+	if (s2)
+	{
+		free(*s2);
+		*s2 = NULL;
+	}
+	return (NULL);
+}
+char	*ft_strdup(char *s1)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = ft_calloc(ft_strlen(s1) + 1, sizeof(char));
+	if (!tmp)
+		return (NULL);
+	while (s1[i])
+	{
+		tmp[i] = s1[i];
+		i++;
+	}
+	return (tmp);
+}	
+
+int	main()
+{
+	printf(
