@@ -49,17 +49,17 @@ size_t	ft_strlen(const char *str)
 		len++;
 	return (len)
 }
-/*La funcion strlen en C se utiliza para calcular la longitud de una cadena
- *de caracteres. Toma como argumento un puntero a una cadena de caracteres
-(const chr *) y devuelve el numero de caracteres en esa cadena, excluyendo
-el caracter nulo final ('\0')
-Este codigo proporcionado calcula la longitud de una cadena de caracteres
-(str) utilizando un bucle while. Comienza inicializando la variable 'len"
-a cero. Luego, entra en un bucle while que se ejecuta mientras el caracter
-actual al que apunta el puntero "str" no sea el caracter nulo (\'0'). En cada 
-iteracion, incrementa "len" y avanza al siguiente caracter de la cadena.
-cuando se alcanza el caracter nulo, se sale del bucle y se devuelve el valor de 
-"len", que representa la longitud de la cadena*/
+/* La funcion strlen en C se utiliza para calcular la longitud de una cadena
+ * de caracteres. Toma como argumento un puntero a una cadena de caracteres
+ * (const chr *) y devuelve el numero de caracteres en esa cadena, excluyendo
+ * el caracter nulo final ('\0')
+ * Este codigo proporcionado calcula la longitud de una cadena de caracteres
+ * (str) utilizando un bucle while. Comienza inicializando la variable 'len"
+ * a cero. Luego, entra en un bucle while que se ejecuta mientras el caracter
+ * actual al que apunta el puntero "str" no sea el caracter nulo (\'0'). En cada 
+ * iteracion, incrementa "len" y avanza al siguiente caracter de la cadena.
+ * cuando se alcanza el caracter nulo, se sale del bucle y se devuelve el valor de 
+ * "len", que representa la longitud de la cadena*/
 
 char	*ft_free(char **buff, char **buff2)
 {
@@ -114,4 +114,25 @@ char	*ft_strjoin(char *str1, char *str2)
  * Luego, se itera a traves de la cadena str1 y se copian sus caracteres a new_str hasta
  * que se alcance el caracter nulo '\0'. Luego se hace lo mismo con la cadena str2
  * Finalmente, se agrega el caracter nulo '\0' al final de new_str para asegurarse de que
- * sea una cadena valida y se devuelve "new_str" 
+ * sea una cadena valida y se devuelve "new_str"*/
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
+	return (NULL)
+}
+/*La funcion strchr en C se utiliza para buscar la primera aparición de un 
+ * caracter especifico en una cadena de caracteres.
+ * En esta funcion se toman dos argumentos: un puntero a una cadena de caracteres 's'y un entero c
+ * La funcion busca la primera aparicion del caracter c en la cadena s
+ * Dentro del bucle 'while' se verifica si el caracter actual al que apunta s es
+ * igual al caracter c. Si se encuentra una coincidencia, se devuelve un punteroa la ubicación
+ * de ese caracter en la cadena s utlizando un casting a (char *)
+ *  
