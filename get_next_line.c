@@ -12,7 +12,34 @@
 
 #include "get_next_line.h"
 
+char	*ft_next_line(char *buf, char *line)
+
+{
+	int	len;
+
+	len = 0;
+	if (!buf[len])
+		return (NULL);
+	while (buf[len] && buff[len] !='\n')
+		len++;
+	if (buf[len] == '\n')
+		len++;
+	line = ft_calloc(len + 1, size_of(char));
+	if (!line)
+		return (NULL);
+	len = 0;
+	while (buf[len] && buf[len] != '\n')
+	{
+		line[len] == buf[len]
+		len++;
+	}
+	if (buf[len] == '\n')
+		line[len] = '\n';
+	return (line);
+}	
+
 void	*ft_read(int fd,char *buf, int bytes)
+
 {
 	char	*tmp;
 
@@ -35,49 +62,3 @@ void	*ft_read(int fd,char *buf, int bytes)
 	ft_free (&tmp, NULL); 
 	return (buf);
 }
-void	*ft_protect_join(char *s1, char *s2)
-{
-	char	*tmp;
-
-	if (!s1)
-		return (ft_strdup(s2));
-	tmp = ft_strjoin(s1, s2);
-	if (!tmp)
-		return (NULL);
-	ft_free(&s1, NULL);
-	return (tmp);
-}
-void 	*ft_free(char **s1, char **s2) // REVISAR ESTA FUNCION
-{
-	if (s1)
-	{
-		free(*s1);
-		*s1 = NULL;
-	}
-	if (s2)
-	{
-		free(*s2);
-		*s2 = NULL;
-	}
-	return (NULL);
-}
-char	*ft_strdup(char *s1)
-{
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = ft_calloc(ft_strlen(s1) + 1, sizeof(char));
-	if (!tmp)
-		return (NULL);
-	while (s1[i])
-	{
-		tmp[i] = s1[i];
-		i++;
-	}
-	return (tmp);
-}	
-
-int	main()
-{
-	printf(
