@@ -134,5 +134,4 @@ char	*ft_strchr(const char *s, int c)
  * La funcion busca la primera aparicion del caracter c en la cadena s
  * Dentro del bucle 'while' se verifica si el caracter actual al que apunta s es
  * igual al caracter c. Si se encuentra una coincidencia, se devuelve un punteroa la ubicación
- * de ese caracter en la cadena s utlizando un casting a (char *)
- *  
+ * de ese caracter en la cadena s utlizando un casting a (char *)*/ 
